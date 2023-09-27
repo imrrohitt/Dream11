@@ -36,8 +36,5 @@ jobs:
       - name: Install dependencies
         run: |
           bundle install --path=vendor/bundle
-      - name: Setup Database
-        run: |
-          bin/rails db:test:prepare
       - name: Run Rspec
         run: bundle exec rspec
