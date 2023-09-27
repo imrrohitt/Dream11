@@ -20,20 +20,6 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
-      db:
-        image: mysql:8.0
-        env:
-          MYSQL_ROOT_PASSWORD: Password123
-          MYSQL_DATABASE: dream11
-          MYSQL_USER: dream11
-          MYSQL_PASSWORD: Password123
-        ports:
-          - 3306:3306
-        options: >-
-          --health-cmd="mysqladmin ping"
-          --health-interval=10s
-          --health-timeout=5s
-          --health-retries=3
     steps:
       - uses: actions/checkout@v3
       - name: Set up Ruby
@@ -52,7 +38,6 @@ jobs:
           bundle install --path=vendor/bundle
       - name: Setup Database
         run: |
-          cp config/database.yml.ci config/database.yml
           bin/rails db:test:prepare
       - name: Run Rspec
         run: bundle exec rspec
