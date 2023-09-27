@@ -51,5 +51,5 @@ test:
 production:
   <<: *default
   database: dream11_production
-  username: dream11
+  username: <%= ENV["DREAM11_DATABASE_USERNAME'] %>
   password: <%= ENV["DREAM11_DATABASE_PASSWORD"] %>
