@@ -1,5 +1,5 @@
 class Api::V1::MatchesController < ApplicationController
-    before_action :set_match, only: [:show, :update, :destroy]
+    before_action :set_match, only: [:show, :destroy]
 
     def index
         @matches = Match.all
@@ -14,14 +14,6 @@ class Api::V1::MatchesController < ApplicationController
         @match = Match.new(match_params)
         if @match.save
         render json: @match, status: :created
-        else
-        render json: @match.errors, status: :unprocessable_entity
-        end
-    end
-
-    def update
-        if @match.update(match_params)
-        render json: @match
         else
         render json: @match.errors, status: :unprocessable_entity
         end
